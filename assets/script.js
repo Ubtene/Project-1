@@ -18,21 +18,46 @@ var firstArray =[];
 
 database.ref().on("child_added", function(snapshot) {
 
-  
   firstArray.push(snapshot.val().Input);
 
   console.log(firstArray);
+
+  $("#flex-box").empty();
+
+   for (i=0 ;  i < firstArray ; i++) {
+
+  	var container = $('<div>');
+
+  	var items = $('<div>');
+
+  	var checkbox = $('<input type="checkbox">');
+
+  	items.attr( 'data-buttons' , firstArray[i]);
+
+  	items.text(snapshot.val().firstArray[i]);
+
+    container.addClass('item-button');
+
+  	container.preprend(checkbox);
+
+  	container.append(items);
+ 	
+    $("#flex-box").append(container);
+ 
+  }
+
+  
 
 });
 
 
 
 
-$(".btn").on("click" , function() {
+$("#add-button").on("click" , function() {
 
 event.preventDefault();
 
-var input = $(".form-control").val().trim();
+var input = $(".form-control").val();
 
 $(".form-control").val("");
 
@@ -43,7 +68,7 @@ Input: input,
 
 
 
-});
+});	
 
 
 
