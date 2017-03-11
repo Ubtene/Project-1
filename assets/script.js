@@ -26,17 +26,25 @@ database.ref().on("child_added", function(snapshot) {
 
    for (i=0 ;  i < firstArray ; i++) {
 
-  	var items = $('<div class="item-button">');
+  	var container = $('<div>');
+
+  	var items = $('<div>');
+
+  	var checkbox = $('<input type="checkbox">');
 
   	items.attr( 'data-buttons' , firstArray[i]);
 
-  	items.text(firstArray[i]);
+  	items.text(snapshot.val().firstArray[i]);
 
-    $("#flex-box").prepend(items);
+    container.addClass('item-button');
+
+  	container.preprend(checkbox);
+
+  	container.append(items);
+ 	
+    $("#flex-box").append(container);
  
   }
-
-  
 
 });
 
